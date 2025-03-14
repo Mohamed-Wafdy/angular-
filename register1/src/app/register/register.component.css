@@ -1,0 +1,42 @@
+body {
+    background-color: #f0f4f8;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.text-danger {
+    font-size: 0.875rem;
+}
+
+.alert {
+    margin-bottom: 20px;
+}

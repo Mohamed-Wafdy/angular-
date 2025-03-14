@@ -1,0 +1,80 @@
+<div class="container mt-5">
+    <form class="row gy-3" #registerForm="ngForm" (ngSubmit)="handleSubmit(registerForm)">
+        <div class="col-12">
+            <div *ngIf="submissionMessage" class="alert"
+                [ngClass]="{'alert-success': registerForm.valid, 'alert-danger': !registerForm.valid}">
+                {{submissionMessage}}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="userLogin.firstName"
+                #firstName="ngModel" required minlength="3" pattern="^[A-Za-z]+$" placeholder="Enter First Name">
+            <div *ngIf="registerForm.submitted && firstName.invalid" class="text-danger">
+                <div *ngIf="firstName.errors?.['required']">First name is required.</div>
+                <div *ngIf="firstName.errors?.['minlength']">Must be at least 3 characters long.</div>
+                <div *ngIf="firstName.errors?.['pattern']">Only letters are allowed.</div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="userLogin.lastName"
+                #lastName="ngModel" required minlength="3" pattern="^[A-Za-z]+$" placeholder="Enter Last Name">
+            <div *ngIf="registerForm.submitted && lastName.invalid" class="text-danger">
+                <div *ngIf="lastName.errors?.['required']">Last name is required.</div>
+                <div *ngIf="lastName.errors?.['minlength']"> Must be at least 3 characters long.</div>
+                <div *ngIf="lastName.errors?.['pattern']">Only letters are allowed.</div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="userLogin.phone"
+                #phone="ngModel" required pattern="^[0-9]{10,}$" placeholder="Enter Phone Number">
+            <div *ngIf="registerForm.submitted && phone.invalid" class="text-danger">
+                <div *ngIf="phone.errors?.['required']">Phone number is required.</div>
+                <div *ngIf="phone.errors?.['pattern']">Only numbers are allowed (minimum 10 digits).</div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="userLogin.email"
+                #email="ngModel" required email placeholder="Enter Email">
+            <div *ngIf="registerForm.submitted && email.invalid" class="text-danger">
+                <div *ngIf="email.errors?.['required']">Email is required.</div>
+                <div *ngIf="email.errors?.['email']">Enter a valid email address.</div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="userLogin.password"
+                #password="ngModel" required pattern="^[0-9]{6,}$" placeholder="Enter Password">
+            <div *ngIf="registerForm.submitted && password.invalid" class="text-danger">
+                <div *ngIf="password.errors?.['required']">Password is required.</div>
+                <div *ngIf="password.errors?.['pattern']">Password must contain only numbers (minimum 6 digits).</div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                [(ngModel)]="userLogin.confirmPassword" #confirmPassword="ngModel" required
+                placeholder="Confirm Password">
+            <div *ngIf="registerForm.submitted && confirmPassword.invalid" class="text-danger">
+                Confirm Password is required.
+            </div>
+            <div *ngIf="registerForm.submitted && userLogin.password !== userLogin.confirmPassword" class="text-danger">
+                Passwords do not match.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary btn-lg w-100">Register</button>
+        </div>
+    </form>
+</div>
+```
