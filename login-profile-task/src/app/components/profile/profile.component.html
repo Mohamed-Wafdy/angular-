@@ -1,0 +1,94 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="avatar-placeholder mb-3">
+                            <i class="fas fa-user fa-2x text-muted"></i>
+                        </div>
+                        <h3 class="card-title">Profile Information</h3>
+                    </div>
+
+                    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="user" class="profile-form">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="customer_first_name"
+                                        formControlName="customer_first_name" placeholder="First Name"
+                                        [ngClass]="{'is-invalid': submitted && f['customer_first_name'].errors}">
+                                    <label for="customer_first_name">First Name</label>
+                                    <div *ngIf="submitted && f['customer_first_name'].errors" class="invalid-feedback">
+                                        First name is required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="customer_last_name"
+                                        formControlName="customer_last_name" placeholder="Last Name"
+                                        [ngClass]="{'is-invalid': submitted && f['customer_last_name'].errors}">
+                                    <label for="customer_last_name">Last Name</label>
+                                    <div *ngIf="submitted && f['customer_last_name'].errors" class="invalid-feedback">
+                                        Last name is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="customer_email"
+                                formControlName="customer_email" placeholder="Email"
+                                [ngClass]="{'is-invalid': submitted && f['customer_email'].errors}">
+                            <label for="customer_email">Email</label>
+                            <div *ngIf="submitted && f['customer_email'].errors" class="invalid-feedback">
+                                <div *ngIf="f['customer_email'].errors['required']">Email is required</div>
+                                <div *ngIf="f['customer_email'].errors['email']">Please enter a valid email</div>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" id="customer_phone" formControlName="customer_phone"
+                                placeholder="Contact Number"
+                                [ngClass]="{'is-invalid': submitted && f['customer_phone'].errors}">
+                            <label for="customer_phone">Contact Number</label>
+                            <div *ngIf="submitted && f['customer_phone'].errors" class="invalid-feedback">
+                                Phone number is required
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="customer_language" formControlName="customer_language"
+                                [ngClass]="{'is-invalid': submitted && f['customer_language'].errors}">
+                                <option value="1">English</option>
+                                <option value="2">Arabic</option>
+                            </select>
+                            <label for="customer_language">Language</label>
+                            <div *ngIf="submitted && f['customer_language'].errors" class="invalid-feedback">
+                                Language selection is required
+                            </div>
+                        </div>
+
+                        <div *ngIf="message" class="alert" [ngClass]="{'alert-success': !error, 'alert-danger': error}">
+                            {{message}}
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="loading">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm me-1" role="status"
+                                    aria-hidden="true"></span>
+                                {{loading ? 'Saving...' : 'Save Changes'}}
+                            </button>
+                        </div>
+                    </form>
+
+                    <div *ngIf="!user" class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
